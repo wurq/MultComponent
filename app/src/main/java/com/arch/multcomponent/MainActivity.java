@@ -7,7 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.arch.annotation.RouteNode;
+import com.arch.componentlib.router.Router;
+import com.arch.componentservice.componenta.ComponentAService;
+import com.arch.rout_annotation.RouteNode;
+
+//import com.arch.annotation.RouteNode;
 
 @RouteNode(path = "/main", desc = "首页")
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,23 +42,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ft.remove(fragment).commit();
             fragment = null;
         }
-//        Router router = Router.getInstance();
-//        if (router.getService(ReadBookService.class.getSimpleName()) != null) {
-//            ReadBookService service = (ReadBookService) router.getService(ReadBookService.class.getSimpleName());
-//            fragment = service.getReadBookFragment();
-//            ft = getSupportFragmentManager().beginTransaction();
-//            ft.add(R.id.tab_content, fragment).commitAllowingStateLoss();
-//        }
+        Router router = Router.getInstance();
+        if (router.getService(ComponentAService.class.getSimpleName()) != null) {
+            ComponentAService service = (ComponentAService) router.getService(ComponentAService.class.getSimpleName());
+            fragment = service.getComponentAFragment();
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.tab_content, fragment).commitAllowingStateLoss();
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.install_share:
-//                Router.registerComponent("com.luojilab.share.applike.ShareApplike");
+                Router.registerComponent("com.arch.componentaservice.routerapp.RouterApplication");
+//                Router.registerComponent("com.arch.multcomponent.MainActivity");
                 break;
             case R.id.uninstall_share:
-//                Router.unregisterComponent("com.luojilab.share.applike.ShareApplike");
+                Router.unregisterComponent("com.arch.componentaservice.routerapp.RouterApplication");
                 break;
         }
     }

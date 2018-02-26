@@ -1,1 +1,1 @@
-include ':app', ':router-annotation', ':route-anno-compile', ':componentlib'
+include ':app', ':router-annotation', ':route-anno-compile', ':componentlib', ':componentaservice', ':componentservice', ':router-anno-compiler', ':compo_ann', ':rout-annotation', ':rout-anno-compiler', ':componentbservice'
